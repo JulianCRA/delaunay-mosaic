@@ -1,0 +1,39 @@
+{
+  "name": "delaunay-mosaic",
+  "version": "1.0.0",
+  "description": "Mosaic filters for image files.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open --hot --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "build:serve": "webpack --config webpack.prod.js && serve build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulianCRA/delaunay-mosaic.git"
+  },
+  "keywords": [
+    "delaunator",
+    "mosaic",
+    "image",
+    "filter"
+  ],
+  "author": "JulianCRA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JulianCRA/delaunay-mosaic/issues"
+  },
+  "homepage": "https://github.com/JulianCRA/delaunay-mosaic#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "delaunator": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "p5": "^0.7.2",
+    "webpack": "^4.19.1",
+    "webpack-cdn-plugin": "^2.2.1",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.8",
+    "webpack-merge": "^4.1.4"
+  }
+}
