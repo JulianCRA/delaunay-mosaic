@@ -21,18 +21,6 @@ let handleFileSelect = (evt) => {
 	reader.readAsDataURL(file);
 }
 
-document.getElementById("file").addEventListener("change", handleFileSelect, false);
-document.getElementById("gobtn").addEventListener("click", go, false);
-document.getElementById("qvertices").addEventListener("input", setQ, false);
-//document.getElementById("qvertices").addEventListener("change", setQ, false);
-
-function go(){
-	p5instance.toDelaunay();
-}
-
-function setQ(){
-	p5instance.setVerticesAmount(this.value);
-}
 
 let sketch = (p) => {
 	let img, _WIDTH, _HEIGHT, points, amount, delaunay;
@@ -49,6 +37,8 @@ let sketch = (p) => {
 		p.createCanvas(_WIDTH, _HEIGHT);
 		p.image(img, 0, 0);
 		img.loadPixels();
+		p.noSmooth();
+		p.strokeWeight(3);
 	}
 
 	p.toDelaunay = () => {
@@ -61,7 +51,7 @@ let sketch = (p) => {
 			points.push([xx, yy]);
 		}
 		delaunay = Delaunator.from(points);
-		//console.log(delaunay.triangles);
+		//console.log(delaunay);
 		p.drawTriangles();
 	}
 
@@ -91,8 +81,8 @@ let sketch = (p) => {
 				let xx = Math.round((tr[0][0]+tr[1][0]+tr[2][0])/3);
 				let yy = Math.round((tr[0][1]+tr[1][1]+tr[2][1])/3);
 				pix = (yy * img.width + xx) * 4
-				p.fill(img.pixels[pix], img.pixels[pix+1], img.pixels[pix+2], 255);
-
+				p.fill(img.pixels[pix], img.pixels[pix+1], img.pixels[pix+2]);
+				p.stroke(img.pixels[pix], img.pixels[pix+1], img.pixels[pix+2]);
 				p.triangle(tr[0][0], tr[0][1], tr[1][0], tr[1][1], tr[2][0], tr[2][1]);
 			}
 		}
@@ -104,4 +94,17 @@ let sketch = (p) => {
 		amount = q;
 		p.toDelaunay();
 	}
+}
+
+
+document.getElementById("file").addEventListener("change", handleFileSelect, false);
+document.getElementById("gobtn").addEventListener("click", go, false);
+document.getElementById("qvertices").addEventListener("input", setQ, false);
+
+function go(){
+	p5instance.toDelaunay();
+}
+
+function setQ(){
+	p5instance.setVerticesAmount(this.value);
 }
